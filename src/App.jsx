@@ -88,6 +88,7 @@ const App = () => {
   const [orderAmount, setOrderAmount] = useState('');
   const [selectedCoupon, setSelectedCoupon] = useState(null);
 
+  // for check user have valid coupon or not 
   const getValidCoupons = () => {
     const currentDate = new Date();
     return discounts.filter(coupon => 
@@ -96,6 +97,7 @@ const App = () => {
       orderAmount >= coupon.minOrderAmount
     );
   };
+// for coculate the discount
 
   const applyCoupon = () => {
     if (!selectedCoupon) return orderAmount;
@@ -106,6 +108,7 @@ const App = () => {
       return Math.max(orderAmount - (0, orderAmount * selectedCoupon.value / 100));
     }
   };
+// function calling
 
   const validCoupons = getValidCoupons();
   const discountedAmount = selectedCoupon ? applyCoupon() : orderAmount;
@@ -122,6 +125,7 @@ const App = () => {
       />
       
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-4 mb-6">
+        {/* for checking coupon is avaible or not */}
         {validCoupons.length > 0 ? validCoupons.map(coupon => (
           <div 
             key={coupon._id} 
