@@ -100,10 +100,10 @@ const App = () => {
   const applyCoupon = () => {
     if (!selectedCoupon) return orderAmount;
     if (selectedCoupon.type === 'amount') {
-      return Math.max(0, orderAmount - selectedCoupon.value);
+      return Math.max(0,orderAmount - selectedCoupon.value);
     }
     if (selectedCoupon.type === 'percentage') {
-      return Math.max(0, orderAmount - (orderAmount * selectedCoupon.value / 100));
+      return Math.max(orderAmount - (0, orderAmount * selectedCoupon.value / 100));
     }
   };
 
@@ -127,10 +127,10 @@ const App = () => {
             key={coupon._id} 
             className="flex justify-between items-center p-2 border-b border-gray-200 last:border-none"
           >
-            <p className="text-gray-700">{coupon.name} - <span className="font-mono text-blue-600">{coupon.code}</span></p>
+            <p className="text-black">{coupon.name} - <span className="font-mono text-blue-600">{coupon.code}</span></p>
             <button 
               onClick={() => setSelectedCoupon(coupon)} 
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-green-500 hover:translate-all duration-300"
             >
               Apply 
             </button>
@@ -139,8 +139,8 @@ const App = () => {
       </div>
       
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-4">
-        <h2 className="text-gray-700 text-lg">Original Amount: <span className="font-bold">${orderAmount || 0}</span></h2>
-        <h2 className="text-gray-700 text-lg mt-2">Discounted Amount: <span className="font-bold text-green-500">${discountedAmount || 0}</span></h2>
+        <h2 className="text-gray-800 text-lg">Original Amount: <span className="font-bold">Rs {orderAmount || 0}</span></h2>
+        <h2 className="text-gray-800 text-lg mt-2">Discounted Amount: <span className="font-bold text-red-400">Rs {discountedAmount || 0}</span></h2>
       </div>
     </div>
   );
